@@ -1,0 +1,27 @@
+# Render Blueprint: deploys the API. In the Render dashboard choose New → Blueprint and point it at this repo.
+services:
+  - type: web
+    name: breathewise-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGINS
+        sync: false            # e.g. https://your-app.vercel.app
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: DEMO_MODE
+        value: "true"          # lets reviewers use the demo login on a hosted demo; set to "false" once real auth is configured

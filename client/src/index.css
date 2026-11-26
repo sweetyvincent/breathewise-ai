@@ -1,0 +1,54 @@
+@import '@fontsource-variable/inter';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 90 20% 97%; /* soft off-white */
+    --foreground: 150 40% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 40% 10%;
+    --primary: 142 64% 19%; /* deep forest green #14532D */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 150 45% 94%; /* light mint */
+    --secondary-foreground: 142 64% 19%;
+    --muted: 150 20% 94%;
+    --muted-foreground: 150 12% 32%; /* ≥ 7:1 on background */
+    --accent: 160 84% 39%; /* emerald */
+    --accent-foreground: 150 40% 8%;
+    --destructive: 0 72% 38%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 15% 86%;
+    --input: 150 12% 70%;
+    --ring: 160 84% 30%;
+    --radius: 0.9rem;
+  }
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    @apply sr-only;
+  }
+}
